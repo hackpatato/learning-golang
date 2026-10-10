@@ -22,7 +22,7 @@ func checkPort(host string, port int, wg *sync.WaitGroup, results chan<- int) {
 }
 
 func main() {
-	fmt.Printf("Welcome Port Checker!")
+	fmt.Printf("Welcome Port Checker! \n")
 	host := "127.0.0.1"
 	startPort := 1
 	endPort := 1024
