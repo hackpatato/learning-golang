@@ -97,7 +97,7 @@ func (todos *Todos) print() {
 		complatedat := ""
 		if t.Completed {
 			complated = "✅"
-			if t.CompletedAt.IsZero() {
+			if !t.CompletedAt.IsZero() {
 				complatedat = t.CompletedAt.Format(time.RFC1123)
 			}
 		}
@@ -109,8 +109,11 @@ func (todos *Todos) print() {
 func main() {
 	fmt.Println("welcome todo app \n by hackpatato")
 	todos := Todos{}
+	storage := NewStorage[Todos]("todos.json")
+	storage.Load(&todos)
     todos.add("Buy Milk")
     todos.add("Buy Bread")
     todos.toggle(0)
     todos.print()
+	storage.Save(todos)
 }
